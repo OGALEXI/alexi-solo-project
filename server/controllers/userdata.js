@@ -2,25 +2,28 @@
 
 const { User, JournalEntry, CalendarEntry } = require('../models/userdata');
 const bcrypt = require('bcrypt');
+const { ObjectId } = require('mongodb');
 
 const signup = async (req, res) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username: username });
     if (user) {
-        return res.status(409).send({ error: '409', message: 'User already exists'});
+        return res.status(409).send('User already exists');
     }
     try {
         if (password === '') {
             throw new Error();
         }
-        const hash = await bcrypt.hash(password, bcrypt.genSaltSync(10));
+        const hashedPass = await bcrypt.hash(password, bcrypt.genSaltSync(10));
         const newUser = new User({
             ...req.body,
-            password: hash
+            password: hashedPass
         });
-        const user = await newUser.save();
-        req.session.uid = user._id;
-        res.status(201).send(user);
+        const finalUser = await newUser.save();
+        console.log(finalUser.id);
+        req.session.uid = finalUser.id; 
+        console.log('SIGNUP: ' , req.session.uid);
+        res.status(201).send(finalUser);
     } catch (e) {
         console.log(e);
         res.status(400).send('Could not create user');
@@ -35,7 +38,8 @@ const login = async (req, res) => {
         if (!validPassword) {
             throw new Error();
         }
-        req.session.uid = user._id;
+        req.session.uid = user.id;
+        console.log('LOGIN SESSION: ', req.session.uid);
         res.status(200).send(user);
     } catch (e) {
         console.log(e);
@@ -45,14 +49,25 @@ const login = async (req, res) => {
 
 const userHomepage = async (req, res) => {
   try {
-    const { _id, name } = req.user;
-    const user = { _id, name };
-    res.status(200).send(user);
+    const result = await User.findOne({
+      id: req.session.uid
+    }).exec();
+    res.status(200).send(result);
   } catch (error) {
     console.error(error);
-    res.status(404).send('User not found');
+    res.status(500).send('Internal server error');
   }
 };
 
+const logout = (req, res) => {
+    req.session.destroy((error) => {
+        if (error) {
+            res.status(500).send('Could not log out, please try again.')
+        } else {
+            res.clearCookie('sid');
+            res.sendStatus(200);
+        }
+    })
+}
 
-module.exports = { signup, login, userHomepage };
+module.exports = { signup, login, userHomepage, logout };
