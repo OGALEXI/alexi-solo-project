@@ -12,7 +12,7 @@ const Profile = () => {
     const name = state.name || 'Friend';
 
     useEffect(() => {
-        const getUserProfile = async () => {
+        const getProfile = async () => {
             const userInfo = await ApiService.getUserProfile();
             if (userInfo) {
                 const { name } = userInfo;
@@ -26,13 +26,11 @@ const Profile = () => {
                 console.log('No user info found');
             }
         }
-        getUserProfile();
+        getProfile();
     }, []);
 
     return (
         <div className="profile">
-            Profile
-            <h2>My Profile</h2>
             <h3>
                 Welcome back, {name}! How are you?
             </h3>

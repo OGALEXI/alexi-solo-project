@@ -3,6 +3,7 @@ const BASE_URL = 'http://localhost:3001';
 const ApiService = {};
 
 ApiService.signup = (user) => {
+  console.log(user);
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     credentials: 'include',

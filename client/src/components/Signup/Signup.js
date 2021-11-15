@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import auth from '../../auth';
 import ApiService from '../../ApiService';
 import './Signup.css';
+import { useNavigate } from 'react-router';
 
 const initialState = {
     name: '',
@@ -9,8 +9,9 @@ const initialState = {
     password: ''
 };
 
-const Signup = (props) => {
+const Signup = ({ setIsAuthenticated }) => {
     const [state, setState] = useState(initialState);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,13 +27,13 @@ const Signup = (props) => {
         const { name, username, password } = state;
         const user = { name, username, password };
         const res = await ApiService.signup(user);
+        navigate('/login');
         if (res.error) {
             console.log(res.error);
             alert(`${res.message}`);
             setState(initialState);
         } else {
-            props.setIsAuthenticated(true);
-            auth.login(() => props.history.push('./homepage'));
+            setIsAuthenticated(false);
         }
     }
 

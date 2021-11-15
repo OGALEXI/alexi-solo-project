@@ -14,6 +14,7 @@ function App() {
 
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
+  //const navigate = useRoutes();
 
   return (
       <BrowserRouter>
@@ -21,14 +22,14 @@ function App() {
           <nav className="nav-bar">
             BrainBuddy
             <ul>
-              <li className="home"><Link to={'/'}>Home</Link></li>
               {isAuthenticated ? (
-              <React.Fragment>
+                <React.Fragment>
               <li><Link to={'/logout'}>Logout</Link></li>
               <li><Link to={'./profile'}>Profile</Link></li>
               </React.Fragment>
               ) : (
               <React.Fragment>
+              <li className="home"><Link to={'/'}>Home</Link></li>
               <li><Link to={'/signup'}>Signup</Link></li>
               <li><Link to={'/login'}>Login</Link></li>
               </React.Fragment>
@@ -36,14 +37,15 @@ function App() {
             </ul>
           </nav>
           <Routes>
-            <Route path="/" exact element={<Home/>}></Route>
-            <Route path="/signup" element={<Signup/>}></Route>
-            <Route path="/login" element={<Login/>}> </Route>
+            <Route 
+              path="/"
+              element={<Home setIsAuthenticated={setIsAuthenticated} />}></Route>
+            <Route 
+              path="/signup"
+              element={<Signup setIsAuthenticated={setIsAuthenticated} />}></Route>
+            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />}> </Route>
             <Route path="/profile" element={<Profile/>} />
-            <Route path="/logout" element={<Logout/>} render={(props) => (
-                <Logout {...props} setIsAuthenticated={setIsAuthenticated} />
-                )}>
-            </Route>
+            <Route path="/logout" element={<Logout setIsAuthenticated={setIsAuthenticated} />} ></Route>
           </Routes>
         </div>
       </BrowserRouter>

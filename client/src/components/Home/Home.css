@@ -11,8 +11,13 @@
     transform: translate(-50%, -50%);
     position: fixed;
     flex-direction: column;
-    padding-top: 3rem;
     overflow: scroll;
+}
+
+.welcome {
+    padding-top: 1rem;
+    text-align: center;
+    color: white;
 }
 
 .home-login-button {

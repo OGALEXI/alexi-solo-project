@@ -1,17 +1,17 @@
 import React from 'react';
-import auth from '../../auth';
 import ApiService from '../../ApiService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Logout = (props) => {
+const Logout = ({setIsAuthenticated}) => {
+    const navigate = useNavigate();
     const handleClick = () => {
         ApiService.logout();
         handleAuth();
     };
 
     const handleAuth = () => {
-        props.setIsAuthenticated(false);
-        auth.logout(() => props.history.push('/'));
+        setIsAuthenticated(false);
+        navigate('/');
     };
 
     return (

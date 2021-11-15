@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import auth from '../../auth';
 import ApiService from '../../ApiService';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 
 const initialState = {
@@ -11,8 +10,9 @@ const initialState = {
 }
 
 
-const Home = (props) => {
+const Home = ({setIsAuthenticated}) => {
     const [state, setState] = useState(initialState);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,14 +27,15 @@ const Home = (props) => {
 
         const { username, password } = state;
         const user = { username, password };
-        const res = await ApiService.signup(user);
-
+        const res = await ApiService.login(user);
+        navigate('/profile');
+        
         if (res.error) {
+            console.log(res.error);
             alert(`${res.message}`);
             setState(initialState);
         } else {
-            props.setIsAuthenticated(true);
-            auth.login(() => props.history.push('/profile'));
+            setIsAuthenticated(true);
         }
 
   };
@@ -50,6 +51,7 @@ const Home = (props) => {
                 <h3>We're here to help you track your progress with your mental health, and give you an outlet for your thoughts. Login or sign up to begin your mental health journey!</h3>
             </div>
             <form className="home-login-form" onSubmit={handleSubmit}>
+                <h4 className="welcome">Welcome back.</h4>
                 <input
                   type="text"
                   placeholder="Username"

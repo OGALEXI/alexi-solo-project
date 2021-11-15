@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import auth from '../../auth';
 import ApiService from '../../ApiService';
 import './Login.css';
+import { useNavigate } from 'react-router';
 
 const initialState = {
     username: '',
     password: ''
 };
 
-const Login = (props) => {
+const Login = ({ setIsAuthenticated }) => {
     const [state, setState] = useState(initialState);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,14 +25,15 @@ const Login = (props) => {
 
         const { username, password } = state;
         const user = { username, password };
-        const res = await ApiService.signup(user);
-
+        const res = await ApiService.login(user);
+        navigate('/profile');
+        
         if (res.error) {
+            console.log(res.error);
             alert(`${res.message}`);
             setState(initialState);
         } else {
-            props.setIsAuthenticated(true);
-            auth.login(() => props.history.push('/profile'));
+            setIsAuthenticated(true);
         }
 
   };
@@ -43,7 +45,7 @@ const Login = (props) => {
     return (
         <div>
             <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login here.</h2>
+                <h2>Login here!</h2>
                 <input
                   type="text"
                   placeholder="Username"
