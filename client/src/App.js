@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import auth from './auth';
-import Dashboard from './components/Dashboard/Dashboard';
-import SplashNav from './components/SplashNav/SplashNav';
+
+import Home from './components/Home/Home';
+import Signup from './components/Signup/Signup';
+import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
+import Profile from './components/Profile/Profile';
 
 import './App.css';
 
@@ -12,12 +16,37 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
 
   return (
-    <div className="App">
-      <Router>
-        <SplashNav isAuthenticated={isAuthenticated} />
-        <Dashboard setIsAuthenticated={setIsAuthenticated} />
-      </Router>
-    </div>
+      <BrowserRouter>
+        <div className="app">
+          <nav className="nav-bar">
+            BrainBuddy
+            <ul>
+              <li className="home"><Link to={'/'}>Home</Link></li>
+              {isAuthenticated ? (
+              <React.Fragment>
+              <li><Link to={'/logout'}>Logout</Link></li>
+              <li><Link to={'./profile'}>Profile</Link></li>
+              </React.Fragment>
+              ) : (
+              <React.Fragment>
+              <li><Link to={'/signup'}>Signup</Link></li>
+              <li><Link to={'/login'}>Login</Link></li>
+              </React.Fragment>
+              )}
+            </ul>
+          </nav>
+          <Routes>
+            <Route path="/" exact element={<Home/>}></Route>
+            <Route path="/signup" element={<Signup/>}></Route>
+            <Route path="/login" element={<Login/>}> </Route>
+            <Route path="/profile" element={<Profile/>} />
+            <Route path="/logout" element={<Logout/>} render={(props) => (
+                <Logout {...props} setIsAuthenticated={setIsAuthenticated} />
+                )}>
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
   );
 }
 

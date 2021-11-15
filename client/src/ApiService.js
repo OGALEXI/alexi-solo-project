@@ -26,8 +26,8 @@ ApiService.login = (user) => {
     .catch((err) => console.log(err));
 };
 
-ApiService.homepage = () => {
-  return fetch(`${BASE_URL}/homepage`, {
+ApiService.getUserProfile = () => {
+  return fetch(`${BASE_URL}/profile`, {
     method: 'GET',
     credentials: 'include',
     mode: 'cors',

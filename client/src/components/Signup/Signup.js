@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import auth from '../../auth';
 import ApiService from '../../ApiService';
+import './Signup.css';
 
 const initialState = {
     name: '',
@@ -16,8 +17,8 @@ const Signup = (props) => {
         setState((prevState) => ({
             ...prevState,
             [name]: value
-        }))
-    }
+        }));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,6 +27,7 @@ const Signup = (props) => {
         const user = { name, username, password };
         const res = await ApiService.signup(user);
         if (res.error) {
+            console.log(res.error);
             alert(`${res.message}`);
             setState(initialState);
         } else {
@@ -41,31 +43,32 @@ const Signup = (props) => {
     };
 
     return (
-        <div>
-            <h2>Signup</h2>
+        <div> 
             <form className="form" onSubmit={handleSubmit}>
+                <h2 className="header">Sign up today!</h2>
                 <input 
                   type="text"
-                  placeholder="Name"
+                  placeholder="Name..."
+                  className="name"
                   name="name"
                   value={state.name}
                   onChange={handleChange}
                 />
                 <input 
                   type="text"
-                  placeholder="Username"
+                  placeholder="Username..."
                   name="username"
                   value={state.username}
                   onChange={handleChange}
                 />
                 <input 
                   type="text"
-                  placeholder="Password"
+                  placeholder="Password..."
                   name="password"
                   value={state.password}
                   onChange={handleChange}
                 />
-                <button className="form-submit" type="submit" disabled={validateForm}>
+                <button className="form-submit" type="submit" disabled={validateForm()}>
                     Signup
                 </button>
             </form>

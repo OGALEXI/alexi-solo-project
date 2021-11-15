@@ -20,9 +20,7 @@ const signup = async (req, res) => {
             password: hashedPass
         });
         const finalUser = await newUser.save();
-        console.log(finalUser.id);
         req.session.uid = finalUser.id; 
-        console.log('SIGNUP: ' , req.session.uid);
         res.status(201).send(finalUser);
     } catch (e) {
         console.log(e);
@@ -39,7 +37,6 @@ const login = async (req, res) => {
             throw new Error();
         }
         req.session.uid = user.id;
-        console.log('LOGIN SESSION: ', req.session.uid);
         res.status(200).send(user);
     } catch (e) {
         console.log(e);
@@ -47,7 +44,7 @@ const login = async (req, res) => {
     }
 };
 
-const userHomepage = async (req, res) => {
+const getUserProfile = async (req, res) => {
   try {
     const result = await User.findOne({
       id: req.session.uid
@@ -70,4 +67,28 @@ const logout = (req, res) => {
     })
 }
 
-module.exports = { signup, login, userHomepage, logout };
+const getJournalEntries = () => {
+
+}
+
+const postJournalEntry = () => {
+
+}
+
+const getCalendarEntries = () => {
+
+}
+
+const postCalendarEntry = () => {
+
+}
+
+const editJournalEntry = () => {
+
+}
+
+const editCalendarEntry = () => {
+    
+}
+
+module.exports = { signup, login, getUserProfile, logout };

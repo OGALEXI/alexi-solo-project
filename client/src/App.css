@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav-bar {
+    height: 4rem;
+    display: flex;
+    background: #5DE4A4;
+    text-decoration: none;
+    align-items: center;
+    padding-left: 2rem;
+    overflow: hidden;
+    color: white;
+    font-size: 1.2rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: space-around;
+}
+
+li {
+    display: block;
+}
+
+
+li a {
+    display: block;
+    color: #fafafa;
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+li a:hover {
+    background: #B1EBCF;
+}
+
