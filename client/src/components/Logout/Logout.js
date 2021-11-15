@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiService from '../../ApiService';
 import { Link, useNavigate } from 'react-router-dom';
+import './Logout.css';
 
 const Logout = ({setIsAuthenticated}) => {
     const navigate = useNavigate();
@@ -15,12 +16,12 @@ const Logout = ({setIsAuthenticated}) => {
     };
 
     return (
-        <div>
+        <div className="logout">
             <h2>Are you sure you want to log out?</h2>
-            <Link to="/">
-                <button className="confirm-btn">No</button>
+            <Link className="no-btn" to="/profile">
+                <button className="btn" >No</button>
             </Link>
-            <button className="confirm-btn" onClick={() => handleClick()}>Yes</button>
+            <button className="yes-btn" onClick={() => handleClick()}>Yes</button>
         </div>
     )
 }

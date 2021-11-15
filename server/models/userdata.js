@@ -12,7 +12,7 @@ const journalEntrySchema = new Schema({
     title: { type: String, require: false },
     date: { type: Date, default: Date.now() },
     text: { type: String, require: false },
-    user: { type: Schema.Types.ObjectId, ref: "user"}
+    user: { type: Schema.Types.ObjectId, ref: 'user' }
 }, {
     timestamps: true
 })
@@ -34,7 +34,8 @@ const CalendarEntry = mongoose.model("calendarEntry", calendarEntrySchema);
 const userSchema = new Schema({
     name: { type: String, require: true },
     username: { type: String, require: true },
-    password: { type: String, require: true }
+    password: { type: String, require: true },
+    journal: [{ type: Schema.Types.ObjectId, ref: "journalEntry"}]
 })
 
 const User = mongoose.model("user", userSchema);

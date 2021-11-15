@@ -27,9 +27,8 @@ const Signup = ({ setIsAuthenticated }) => {
         const { name, username, password } = state;
         const user = { name, username, password };
         const res = await ApiService.signup(user);
-        navigate('/login');
+        navigate('/');
         if (res.error) {
-            console.log(res.error);
             alert(`${res.message}`);
             setState(initialState);
         } else {

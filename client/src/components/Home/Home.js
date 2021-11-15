@@ -1,22 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
 import ApiService from '../../ApiService';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 
-const initialState = {
-    username: '',
-    password: ''
-}
-
-
-const Home = ({setIsAuthenticated}) => {
-    const [state, setState] = useState(initialState);
+const Home = ({setIsAuthenticated, user, setUser }) => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setState((prevState) => ({
+        setUser((prevState) => ({
             ...prevState,
             [name]: value
         }));
@@ -25,29 +17,29 @@ const Home = ({setIsAuthenticated}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { username, password } = state;
-        const user = { username, password };
-        const res = await ApiService.login(user);
+        const { username, password } = user;
+        const userBoi = { username, password };
+        const res = await ApiService.login(userBoi);
         navigate('/profile');
         
         if (res.error) {
             console.log(res.error);
             alert(`${res.message}`);
-            setState(initialState);
         } else {
+            setUser = userBoi;
             setIsAuthenticated(true);
         }
 
   };
 
     const validateForm = () => {
-        return !state.username || !state.password;
+        return !user.username || !user.password;
     };
 
     return (
         <div>
             <div className="welcome-box">
-                <h2>Welcome to BrainBuddy!</h2>
+                <h2 className="welcome-bb">Welcome to BrainBuddy!</h2>
                 <h3>We're here to help you track your progress with your mental health, and give you an outlet for your thoughts. Login or sign up to begin your mental health journey!</h3>
             </div>
             <form className="home-login-form" onSubmit={handleSubmit}>
@@ -56,14 +48,14 @@ const Home = ({setIsAuthenticated}) => {
                   type="text"
                   placeholder="Username"
                   name="username"
-                  value={state.username}
+                  value={user.username}
                   onChange={handleChange}
                 />
                 <input
                   type="text"
                   placeholder="Password"
                   name="password"
-                  value={state.password}
+                  value={user.password}
                   onChange={handleChange}
                 />
                 <button className="home-login-button" type="submit" disabled={validateForm()}>

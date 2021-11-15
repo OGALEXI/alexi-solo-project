@@ -67,28 +67,53 @@ const logout = (req, res) => {
     })
 }
 
-const getJournalEntries = () => {
+const getJournalEntries = async (req, res) => {
+    try {
+        const entries = await JournalEntry.findAll();
+        res.status(200).send(entries);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send('Internal server error');
+    }
+}
+//GET
 
+const createJournalEntry = async (req, res) => {
+    try {
+        const entry = new JournalEntry(req.body);
+        const newEntry = await entry.save();
+        //user.journal.push(newEntry);
+        res.status(201).send(newEntry);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send('Internal server error');
+    }
 }
 
-const postJournalEntry = () => {
-
-}
+//POST
 
 const getCalendarEntries = () => {
 
 }
 
-const postCalendarEntry = () => {
+//GET
+
+const createCalendarEntry = () => {
 
 }
+
+//POST
 
 const editJournalEntry = () => {
 
 }
 
+//PUT
+
 const editCalendarEntry = () => {
     
 }
 
-module.exports = { signup, login, getUserProfile, logout };
+//PUT
+
+module.exports = { signup, login, getUserProfile, logout, createJournalEntry, getJournalEntries };

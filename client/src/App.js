@@ -4,17 +4,23 @@ import auth from './auth';
 
 import Home from './components/Home/Home';
 import Signup from './components/Signup/Signup';
-import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import Profile from './components/Profile/Profile';
+import Journal from './components/Journal/Journal';
+import Coping from './components/Coping/Coping';
 
 import './App.css';
 
-function App() {
+const initialUser = {
+    username: '',
+    password: ''
+}
 
+function App() {
+  const [user, setUser] = useState(initialUser);
   const initialState = auth.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
-  //const navigate = useRoutes();
+  
 
   return (
       <BrowserRouter>
@@ -24,14 +30,15 @@ function App() {
             <ul>
               {isAuthenticated ? (
                 <React.Fragment>
-              <li><Link to={'/logout'}>Logout</Link></li>
               <li><Link to={'./profile'}>Profile</Link></li>
+              <li><Link to={'./journal'}>Journal</Link></li>
+              <li><Link to={'./coping'}>Coping</Link></li>
+              <li><Link to={'/logout'}>Logout</Link></li>
               </React.Fragment>
               ) : (
               <React.Fragment>
               <li className="home"><Link to={'/'}>Home</Link></li>
               <li><Link to={'/signup'}>Signup</Link></li>
-              <li><Link to={'/login'}>Login</Link></li>
               </React.Fragment>
               )}
             </ul>
@@ -39,12 +46,15 @@ function App() {
           <Routes>
             <Route 
               path="/"
-              element={<Home setIsAuthenticated={setIsAuthenticated} />}></Route>
+              element={<Home setIsAuthenticated={setIsAuthenticated} user={user} setUser={setUser} />}></Route>
             <Route 
               path="/signup"
-              element={<Signup setIsAuthenticated={setIsAuthenticated} />}></Route>
-            <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />}> </Route>
-            <Route path="/profile" element={<Profile/>} />
+              element={<Signup setIsAuthenticated={setIsAuthenticated} user={user} setUser={setUser} />}></Route>
+            <Route path="/profile" element={<Profile />} />
+            <Route 
+              path="/journal"
+              element={<Journal user={user} setUser={setUser} />}></Route>
+            <Route path="/coping" element={<Coping />} />
             <Route path="/logout" element={<Logout setIsAuthenticated={setIsAuthenticated} />} ></Route>
           </Routes>
         </div>
