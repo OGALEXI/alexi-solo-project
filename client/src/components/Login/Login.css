@@ -1,7 +1,27 @@
 .login-form {
     display: flex;
+    background: #B1EBCF;
+    width: 60%;
+    height: 70%;
+    text-decoration: none;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
-    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 1.5rem;
+    overflow: scroll;
+}
+
+h2 {
+    margin-top: 2rem;
+    color: white;
+}
+
+.username {
+    margin-top: 3rem;
 }
 
 .login-button {

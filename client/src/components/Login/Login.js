@@ -4,7 +4,6 @@ import ApiService from '../../ApiService';
 import './Login.css';
 
 const initialState = {
-    name: '',
     username: '',
     password: ''
 };
@@ -23,8 +22,8 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { name, username, password } = state;
-        const user = { name, username, password };
+        const { username, password } = state;
+        const user = { username, password };
         const res = await ApiService.signup(user);
 
         if (res.error) {
@@ -44,9 +43,11 @@ const Login = (props) => {
     return (
         <div>
             <form className="login-form" onSubmit={handleSubmit}>
+                <h2>Login here.</h2>
                 <input
                   type="text"
                   placeholder="Username"
+                  className="username"
                   name="username"
                   value={state.username}
                   onChange={handleChange}
