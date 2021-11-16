@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../../ApiService';
 import './Profile.css';
+import beep from './burpemote.png';
 
 const initialState = {
     name: ''
@@ -33,6 +34,7 @@ const Profile = () => {
         <div className="profile">
             <h3 className="welcome-banner">
                 Welcome back, {name}! How are you?
+                <img src={beep} className="beep"/>
             </h3>
             <div className="crisis-box1">
                 <p>For crisis help call:</p>
@@ -41,6 +43,15 @@ const Profile = () => {
             <div className="crisis-box2">
                 <p>The TrevorLifeline for LGBTQ+ crisis:</p>
                 <p className="small-p2">1-866-488-7386</p>
+            </div>
+            <div className="services-box">
+                <div className="our-services">Our Services</div>
+                <div className="services">
+                    <p>Coping Mechanisms</p>
+                    <p>Journaling</p>
+                    <p>Under Construction: Calendar</p>
+                    <p>Under Construction: Emotion Logging</p>
+                </div>
             </div>
         </div>
     )

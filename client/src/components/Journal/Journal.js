@@ -1,59 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ApiService from "../../ApiService";
+import JournalEntries from "../JournalEntries/JournalEntries";
 import './Journal.css';
 
-const initialState = {
-    title: '',
-    text: ''
-}
-
 const Journal = () => {
-    const [state, setState] = useState(initialState);
+    const [jTitle, setJTitle] = useState('');
+    const [jText, setJText] = useState('');
+    const [list, setList] = useState([]);
 
-    const handleChange = (e) => {
-        const { item, value } = e.target;
-        setState((prevState) => ({
-            ...prevState,
-            [item]: value
-        }));
-    };
+    useEffect(() => {
+        const getEntries = async () => {
+            try {
+                const userEntries = await ApiService.getJournalEntries();
+                setList(userEntries);
+                
+            } catch (e) {
+                console.log('Could not GET', e);
+            }
+        }
+        getEntries();
+    }, [list]); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const { title, text } = state;
-        const entry = { title, text };
-        const res = await ApiService.createJournalEntry(entry);
+        const res = await ApiService.createJournalEntry(jTitle, jText);
 
         if (res.error) {
             alert(`${res.message}`);
-            setState(initialState);
+            setJTitle('');
+            setJText('');
         } else {
-            setState(res);
+            setJTitle(jTitle);
+            setJText(jText);
         }
     }
 
     return (
         <div>
-            <div className="entry-container">ALL ENTRIES</div>
+            <div className="entry-container">
+                <div className="new-note">Add New Note +</div>
+                <div className="journal-item">
+                    {list.map(el => (<JournalEntries key={el._id} el={el}/>))}
+                </div>
+            </div>
             <form className="journal-form" onSubmit={handleSubmit}>
-                <input 
+                <div className="top-bar">
+                    <input 
                     type="text" 
                     placeholder="Title..." 
-                    className="title" 
-                    name="title" 
-                    value={state.title} 
-                    onChange={handleChange}
-                />
-                <button className="entry-submit" type="submit">Add a new note</button>
-                <input 
-                    type="text" 
-                    placeholder="Type text here..." 
-                    className="text" 
-                    name="text" 
-                    value={state.text} 
-                    onChange={handleChange}
-                />
+                    className="entry-title"
+                    value={jTitle} 
+                    onChange={(e) => {
+                            setJTitle(e.target.value);
+                        }}
+                    />
+                    <button className="entry-submit" type="submit">Add a new note</button>
+                </div>
+                <div className="entry-input">
+                    <input
+                        className="note"
+                        type="text"  
+                        placeholder="Type text here..."
+                        value={jText} 
+                        onChange={(e) => {
+                            setJText(e.target.value);
+                        }}
+                    />
+                </div>
             </form>
         </div>
     )

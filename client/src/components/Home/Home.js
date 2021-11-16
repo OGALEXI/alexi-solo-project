@@ -2,6 +2,8 @@ import React from 'react';
 import ApiService from '../../ApiService';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
+import emotions from './emotions2.png';
+import emotions2 from './emotions.png';
 
 const Home = ({setIsAuthenticated, user, setUser }) => {
     const navigate = useNavigate();
@@ -42,6 +44,7 @@ const Home = ({setIsAuthenticated, user, setUser }) => {
             <div className="welcome-box">
                 <h2 className="welcome-bb">Welcome to BrainBuddy!</h2>
                 <h3>We're here to help you track your progress with your mental health, and give you an outlet for your thoughts. Login or sign up to begin your mental health journey!</h3>
+                <img src={emotions}/>
             </div>
             <form className="home-login-form" onSubmit={handleSubmit}>
                 <h4 className="welcome">Welcome back.</h4>
@@ -62,6 +65,7 @@ const Home = ({setIsAuthenticated, user, setUser }) => {
                 <button className="home-login-button" type="submit" disabled={validateForm()}>
                     Login
                 </button>
+                <img src={emotions2} className="emote"/>
             </form>
             <div className="signup-link">
                 <p>Don't have an account? <Link to={'/signup'} className="link">Sign up here.</Link></p>

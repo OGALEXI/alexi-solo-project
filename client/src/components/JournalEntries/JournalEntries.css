@@ -1,0 +1,19 @@
+.entries {
+    display: flex;
+    background-color: #B1EBCF;
+    margin-top: 1rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    min-height: 5rem;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    justify-content: center;
+}
+
+h3 {
+    font-weight:500;
+    font-size: large;
+}
+
+h4 {
+    font-weight: 400;
+}

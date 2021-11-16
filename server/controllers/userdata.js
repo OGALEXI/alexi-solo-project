@@ -72,7 +72,6 @@ const getJournalEntries = async (req, res) => {
         const entries = await JournalEntry.find({
             owner: req.session.uid
         }).exec();
-        console.log(entries.owner);
         res.status(200).send(entries);
     } catch (e) {
         console.log(e);

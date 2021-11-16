@@ -1,31 +1,36 @@
 .welcome-banner {
     display: flex;
     background: white;
-    width: 50%;
-    height: 15%;
+    width: 45%;
+    height: 18%;
     text-decoration: none;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
-    left: 28%;
+    left: 25.5%;
     top: 20%;
     transform: translate(-50%, -50%);
     position: fixed;
     flex-direction: column;
-    text-align: center;
     justify-content: center;
     padding: 0;
     font-weight: 400;
     overflow: scroll;
+    padding-left: 2rem;
+}
+
+.beep {
+    max-height: 4rem;
+    max-width: 4rem;
 }
 
 .crisis-box1 {
     display: flex;
     background: #B1EBCF;
     width: 50%;
-    height: 20%;
+    height: 22%;
     text-decoration: none;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
     left: 28%;
-    top: 50%;
+    top: 52%;
     transform: translate(-50%, -50%);
     position: fixed;
     flex-direction: column;
@@ -45,11 +50,11 @@
     display: flex;
     background: #B1EBCF;
     width: 50%;
-    height: 20%;
+    height: 22%;
     text-decoration: none;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
     left: 28%;
-    top: 80%;
+    top: 84%;
     transform: translate(-50%, -50%);
     position: fixed;
     flex-direction: column;
@@ -63,4 +68,48 @@
 .small-p2 {
     font-weight: 400;
     font-size: large;
+}
+
+.services-box {
+    display: flex;
+    background: #5DE4A4;
+    width: 35%;
+    height: 80%;
+    text-decoration: none;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    position: fixed;
+    left: 76%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.our-services {
+    padding: 1.5rem;
+    font-weight: 700;
+    font-size: xx-large;
+    color: white;
+}
+
+.services {
+    padding-top: 8rem;
+    display: flex;
+    background: white;
+    font-size: larger;
+    margin: 1rem;
+    width: 90%;
+    height: 80%;
+    text-decoration: none;
+    left: 2.5%;
+    top: 10%;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    position: fixed;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+p {
+    padding-bottom: 2rem;
 }
