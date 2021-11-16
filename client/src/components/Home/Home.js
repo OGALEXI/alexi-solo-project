@@ -26,8 +26,9 @@ const Home = ({setIsAuthenticated, user, setUser }) => {
             console.log(res.error);
             alert(`${res.message}`);
         } else {
-            setUser = userBoi;
+            setUser(userBoi);
             setIsAuthenticated(true);
+            setUser({ username: '', password: '' });
         }
 
   };

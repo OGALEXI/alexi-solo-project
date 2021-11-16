@@ -1,0 +1,28 @@
+.journal-form {
+    display: flex;
+    background: #B1EBCF;
+    width: 60%;
+    height: 80%;
+    text-decoration: none;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    position: fixed;
+    left: 65%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.title {
+    text-decoration: none;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+}
+
+.entry-submit {
+    width: 30%;
+    height: 6%;
+    border: none;
+    background-color: white;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    margin-top: 1rem;
+}

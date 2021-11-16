@@ -47,7 +47,7 @@ const login = async (req, res) => {
 const getUserProfile = async (req, res) => {
   try {
     const result = await User.findOne({
-      id: req.session.uid
+      _id: req.session.uid
     }).exec();
     res.status(200).send(result);
   } catch (error) {
@@ -69,7 +69,10 @@ const logout = (req, res) => {
 
 const getJournalEntries = async (req, res) => {
     try {
-        const entries = await JournalEntry.findAll();
+        const entries = await JournalEntry.find({
+            owner: req.session.uid
+        }).exec();
+        console.log(entries.owner);
         res.status(200).send(entries);
     } catch (e) {
         console.log(e);
@@ -81,13 +84,19 @@ const getJournalEntries = async (req, res) => {
 const createJournalEntry = async (req, res) => {
     try {
         const entry = new JournalEntry(req.body);
+        entry.owner = req.session.uid;
         const newEntry = await entry.save();
-        //user.journal.push(newEntry);
         res.status(201).send(newEntry);
     } catch (e) {
         console.log(e);
         res.status(500).send('Internal server error');
     }
+}
+
+//PUT
+
+const editJournalEntry = () => {
+
 }
 
 //POST
@@ -102,18 +111,10 @@ const createCalendarEntry = () => {
 
 }
 
-//POST
-
-const editJournalEntry = () => {
-
-}
-
-//PUT
+//PATCH/PUT
 
 const editCalendarEntry = () => {
     
 }
-
-//PUT
 
 module.exports = { signup, login, getUserProfile, logout, createJournalEntry, getJournalEntries };

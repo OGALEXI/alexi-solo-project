@@ -53,7 +53,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route 
               path="/journal"
-              element={<Journal user={user} setUser={setUser} />}></Route>
+              element={<Journal />}></Route>
             <Route path="/coping" element={<Coping />} />
             <Route path="/logout" element={<Logout setIsAuthenticated={setIsAuthenticated} />} ></Route>
           </Routes>

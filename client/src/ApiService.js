@@ -48,4 +48,15 @@ ApiService.logout = () => {
     .catch((err) => console.log(err));
 };
 
+ApiService.createJournalEntry = () => {
+  return fetch(`${BASE_URL}/journal`, {
+    method: 'POST',
+    credentials: 'include',
+    mode: 'cors',
+    headers: { 'Content-Type': 'application/json'},
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+}
+
 export default ApiService;
