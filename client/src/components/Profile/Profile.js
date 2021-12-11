@@ -33,7 +33,7 @@ const Profile = () => {
     return (
         <div className="profile">
             <h3 className="welcome-banner">
-                Welcome back, {name}! How are you?
+                <div className="hi-name">Welcome back, {name}! How are you?</div> 
                 <img src={beep} className="beep"/>
             </h3>
             <div className="crisis-box1">

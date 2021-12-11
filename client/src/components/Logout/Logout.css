@@ -34,13 +34,21 @@ h2 {
 }
 
 .btn {
-    padding-top: .9rem;
     background-color: #5DE4A4;
+    height: 3rem;
     font-size: large;
     text-decoration: none;
     color: black;
     border: none;
     justify-content: center;
+}
+
+.no-btn:hover {
+    background-color: #62f3b0;
+}
+
+.btn:hover {
+    background-color: #62f3b0;
 }
 
 .yes-btn {
@@ -54,4 +62,8 @@ h2 {
     border: none;
     color: black;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+}
+
+.yes-btn:hover {
+    background-color: #62f3b0;
 }

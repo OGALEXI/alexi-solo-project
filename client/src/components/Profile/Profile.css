@@ -1,11 +1,11 @@
 .welcome-banner {
     display: flex;
     background: white;
-    width: 45%;
-    height: 18%;
+    width: 25%;
+    height: 20%;
     text-decoration: none;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
-    left: 25.5%;
+    left: 15.5%;
     top: 20%;
     transform: translate(-50%, -50%);
     position: fixed;
@@ -18,8 +18,9 @@
 }
 
 .beep {
-    max-height: 4rem;
-    max-width: 4rem;
+    padding-top: 1rem;
+    max-height: 8rem;
+    max-width: 8rem;
 }
 
 .crisis-box1 {

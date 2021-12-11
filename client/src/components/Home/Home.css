@@ -34,26 +34,30 @@
     margin-bottom: 4rem;
 }
 
+.home-login-button:hover {
+    background-color: #62f3b0;
+}
+
 .welcome-box {
-    display: flex;
-    background: #B1EBCF;
+    display: grid;
+    background-repeat: no-repeat;
     width: 55%;
     height: 50%;
-    text-decoration: none;
-    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
-    position: fixed;
     left: 32%;
     top: 40%;
-    transform: translate(-50%, -50%);
     position: fixed;
-    flex-direction: column;
-    color: black;
-    overflow: scroll;
-    padding-left: 2rem;
+    transform: translate(-50%, -50%);
+    background-color: #B1EBCF;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
 }
 
 .welcome-bb {
     color: black;
+    margin-left: 2rem;
+}
+
+.we-give {
+    margin-left: 3rem;
 }
 
 h2 {
@@ -87,4 +91,8 @@ h3 {
 
 .link {
     color: black;
+}
+
+.link:hover {
+    color: white;
 }

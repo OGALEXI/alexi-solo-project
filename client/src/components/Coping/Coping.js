@@ -1,10 +1,14 @@
 import React from "react";
 import './Coping.css';
+import sadbb from './sadbbs.png';
 
 const Coping = () => {
     return (
         <div className="coping-box">
             <h1 className="title">Coping Mechanisms</h1>
+            <div className="sad-boys">
+                <img src={sadbb} className="jeebies"/>
+            </div>
             <div className="coping">
                 <div className="anxiety">
                     <h3>Anxiety:</h3>

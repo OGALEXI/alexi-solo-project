@@ -45,6 +45,10 @@
     width: 8rem;
 }
 
+.entry-submit:hover {
+    background-color: #5DE4A4;
+}
+
 .entry-title {
     display: inline-block;
     min-width: 11rem;
@@ -78,4 +82,8 @@
     justify-content: center;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
     padding: 1.5rem;
+}
+
+.new-note:hover {
+    background-color: #d2f8e6;
 }

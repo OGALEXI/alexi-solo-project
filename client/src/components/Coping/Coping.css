@@ -16,11 +16,11 @@
 .title {
     display: flex;
     background: white;
-    width: 50%;
+    width: 22%;
     height: 15%;
     text-decoration: none;
     box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
-    left: 28%;
+    left: 14%;
     top: 18%;
     transform: translate(-50%, -50%);
     position: fixed;
@@ -30,6 +30,28 @@
     font-weight: 400;
     overflow: scroll;
     padding-left: 4rem;
+}
+
+.sad-boys {
+    display: flex;
+    background: white;
+    width: 24%;
+    height: 15%;
+    text-decoration: none;
+    box-shadow: 0 0 1rem 0 rgba(51, 51, 51, 0.658);
+    left: 41%;
+    top: 20.1%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    font-size: xx-large;
+    font-weight: 400;
+    overflow: scroll;
+}
+
+.jeebies {
+    max-height: fit-content;
 }
 
 h3 {
